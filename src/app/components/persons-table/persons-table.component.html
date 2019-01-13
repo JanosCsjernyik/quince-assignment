@@ -1,4 +1,5 @@
-<p-table [value]="persons">
+
+<p-table [value]="persons$ | async">
   <ng-template pTemplate="header" class="p-grid">
       <tr>
           <th class="p-col-6 left">
@@ -27,7 +28,7 @@
           </p-checkbox> 
           </td>
           <td class="center">
-            <button pButton type="button" label="Delete" class="ui-button-danger" (click)="deletePerson(person.name)"></button>
+            <button pButton type="button" class="ui-button-danger" icon="pi pi-times" (click)="deletePerson(person)"></button>
           </td>
       </tr>
   </ng-template>

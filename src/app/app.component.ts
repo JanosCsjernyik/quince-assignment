@@ -1,28 +1,22 @@
 import { Component, OnInit  } from '@angular/core';
 
-import { Person } from './person/person.model';
-import { PersonService } from './services/person.service';
+import { Store } from '@ngrx/store';
+
+import * as personActions from './store/actions/person.actions';
+import * as fromRoot from './store/reducers';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'quince-assignment';
 
-  persons: Person[];
-
-  constructor(private personService: PersonService) { }
+  constructor(private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-    this.personService.getPersons().subscribe(persons =>  {
-      this.persons = persons;
-    });
-  }
-
-  deletePerson(person: string) {
-    this.persons = this.persons.filter(personToRemove => personToRemove.name !== person);
+    this.store.dispatch(new personActions.LoadPersons());
   }
 }
