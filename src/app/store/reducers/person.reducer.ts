@@ -1,6 +1,5 @@
 import { PersonState } from './person.reducer';
 import { Person } from './../../person/person.model';
-
 import * as fromPersonActions from './../actions/person.actions';
 
 

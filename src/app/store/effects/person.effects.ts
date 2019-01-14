@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 
-import { PersonService } from './../../services/person.service';
 import * as fromPersonActions from './../actions/person.actions';
+import { PersonService } from './../../services/person.service';
 
 @Injectable()
 export class PersonEffects {
@@ -12,7 +12,7 @@ export class PersonEffects {
   constructor(
     private actions$: Actions,
     private personService: PersonService
-    ) {}
+    ) { }
 
   @Effect()
   loadPersons$ = this.actions$

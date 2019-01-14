@@ -14,7 +14,6 @@ import * as fromRoot from '../../store/reducers';
 export class AddPersonButtonComponent {
 
   display = false;
-  showAlert = false;
   person = {
     name: '',
     job: '',
@@ -22,6 +21,7 @@ export class AddPersonButtonComponent {
     nick: '',
     employee: false,
   };
+  showAlert = false;
 
   constructor(private store: Store<fromRoot.State>) { }
 
