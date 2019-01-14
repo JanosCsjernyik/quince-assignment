@@ -1,0 +1,7 @@
+<p-card header="Data dump">
+  <div *ngIf="(interactedWith$ | async)">
+    <p *ngFor="let person of persons$ | async">
+      {{ person | json }}
+    </p>
+  </div>
+</p-card>

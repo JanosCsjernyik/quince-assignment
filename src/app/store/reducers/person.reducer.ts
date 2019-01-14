@@ -6,10 +6,12 @@ import * as fromPersonActions from './../actions/person.actions';
 
 export interface PersonState {
   persons: Person[];
+  interactedWith: boolean;
 }
 
 export const initialState: PersonState = {
-  persons: null
+  persons: null,
+  interactedWith: false
 };
 
 export function reducer(
@@ -20,20 +22,23 @@ export function reducer(
       const personToAdd = action.payload;
       return {
         ...state,
-        persons: [...state.persons, personToAdd]
+        persons: [...state.persons, personToAdd],
+        interactedWith: true
       };
 
     case fromPersonActions.DELETEPERSON:
       const personToDelete = action.payload;
       return {
         ...state,
-        persons: state.persons.filter((person) => person !== personToDelete)
+        persons: state.persons.filter((person) => person !== personToDelete),
+        interactedWith: true
       };
 
     case fromPersonActions.LOADPERSONSSUCCES:
       const persons = action.payload;
       return {
-        persons: persons
+        persons: persons,
+        interactedWith: false
       };
 
     default:
@@ -42,4 +47,5 @@ export function reducer(
 }
 
 export const getPersons = (state: PersonState) => state.persons;
+export const getInteractedWith = (state: PersonState) => state.interactedWith;
 
