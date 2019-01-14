@@ -1,0 +1,34 @@
+<p-table [value]="persons$ | async">
+  <ng-template pTemplate="header" class="p-grid">
+      <tr>
+          <th class="p-col-6 left">
+            Name
+            <br>
+            (job title)
+          </th>
+          <th class="p-col-1">Age</th>
+          <th class="p-col-3 left">Nickname</th>
+          <th class="p-col-1">Employee</th>
+          <th class="p-col-1">Delete</th>
+      </tr>
+  </ng-template>
+  
+  <ng-template  pTemplate="body" let-person>
+      <tr >
+          <td>
+            {{ person.name }}
+            <br>
+            {{ person.job }}
+          </td>
+          <td class="center">{{ person.age }}</td>
+          <td>{{ person.nick }}</td>
+          <td class="center">
+            <p-checkbox  [(ngModel)]="person.employee" binary="true" disabled="true">
+          </p-checkbox> 
+          </td>
+          <td class="center">
+            <button pButton type="button" class="ui-button-danger" icon="pi pi-times" (click)="deletePerson(person)"></button>
+          </td>
+      </tr>
+  </ng-template>
+</p-table>
