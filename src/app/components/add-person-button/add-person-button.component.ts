@@ -14,6 +14,7 @@ import * as fromRoot from '../../store/reducers';
 export class AddPersonButtonComponent {
 
   display = false;
+  showAlert = false;
   person = {
     name: '',
     job: '',
@@ -24,23 +25,30 @@ export class AddPersonButtonComponent {
 
   constructor(private store: Store<fromRoot.State>) { }
 
+  addPerson() {
+    this.checkName();
+    if (!this.showAlert) {
+      this.closeDialog();
+      this.store.dispatch(new fromPersonActions.AddPerson(this.person));
+      this.person = {
+        name: '',
+        job: '',
+        age: '',
+        nick: '',
+        employee: false,
+      };
+    }
+  }
+
+  checkName() {
+    this.showAlert = this.person.name.length <= 3 ? true : false;
+  }
+
   closeDialog() {
     this.display = false;
   }
 
   showDialog() {
     this.display = true;
-  }
-
-  addPerson() {
-    this.closeDialog();
-    this.store.dispatch(new fromPersonActions.AddPerson(this.person));
-    this.person = {
-      name: '',
-      job: '',
-      age: '',
-      nick: '',
-      employee: false,
-    };
   }
 }
