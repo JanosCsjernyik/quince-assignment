@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,30 +17,30 @@ import { AddPersonButtonComponent } from './components/add-person-button/add-per
 import { PersonService } from './services/person.service';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
 import { PersonEffects } from './store/effects/person.effects';
+import { DataDumpComponent } from './components/data-dump/data-dump.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonsTableComponent,
     AddPersonButtonComponent,
+    DataDumpComponent,
   ],
   imports: [
     ButtonModule,
     BrowserAnimationsModule,
     BrowserModule,
     CheckboxModule,
+    CardModule,
     DialogModule,
     FormsModule,
     HttpClientModule,
     InputTextModule,
     TableModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects, PersonEffects])
   ],
   providers: [PersonService],
